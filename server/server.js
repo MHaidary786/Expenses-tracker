@@ -1,17 +1,25 @@
-const Controller = require("./Controllers/Controller")
-const express = require("express")
-const cors = require("cors")
-const app = express();
+const Controller = require("./Controllers/Controller");
+const express = require("express");
+const cors = require("cors");
+const db = require("./config/connection");
 
+const app = express();
+const port = 4000;
+
+app.use(express.json());
 
 app.use(cors());
 
+app.get("/", Controller.home);
 
-app.get('/', Controller.home)
+app.get("/users", Controller.usernames);
 
+app.get("/alltransactions", Controller.allTransactions);
 
+app.post("/adduser", Controller.users);
 
+app.post("/addtransaction", Controller.addTransaction);
 
-app.listen(4000, ()=> {
-    console.log(`Server is running on port: 4000`)
-})
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});

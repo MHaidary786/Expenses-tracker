@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function AddPage() {
-  const [added, setAdded] = useState({
+  const [transactionObj, settransactionObj] = useState({
     reason: "",
     amount: 0,
     date: "",
@@ -10,17 +10,21 @@ export default function AddPage() {
     description: "",
   });
 
-  function handleInputChange(e) {
-    const { name, value } = e.target;
-    setAdded((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
+
+  console.log(`Here is the added transactions : ${transactionObj}`)
+
+
+  // function handleInputChange(e) {
+  //   const { name, value } = e.target;
+  //   setAdded((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // }
 
   const addnewTransaction = async (e) => {
     e.preventDefault();
-    let newTransaction = added;
+    let newTransaction = transactionObj;
 
     try {
       let response = await axios.post(
@@ -28,7 +32,6 @@ export default function AddPage() {
         newTransaction
       );
       console.log(response);
-      console.log(newTransaction);
     } catch (error) {
       console.error(error);
     }
@@ -52,8 +55,8 @@ export default function AddPage() {
               name="reason"
               id="reason"
               className="title block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={handleInputChange}
-              value={added.reason}
+              onChange={(e)=> {settransactionObj({...transactionObj, reason : e.target.value})}}
+              value={transactionObj.reason}
             />
           </div>
         </div>
@@ -72,8 +75,8 @@ export default function AddPage() {
                 name="amount"
                 id="amount"
                 className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={handleInputChange}
-                value={added.amount}
+                onChange={(e)=> {settransactionObj({...transactionObj, amount : e.target.value})}}
+                value={transactionObj.amount}
               />
             </div>
           </div>
@@ -92,8 +95,8 @@ export default function AddPage() {
                 id="date"
                 autoComplete="given-name"
                 className="title block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={handleInputChange}
-                value={added.date}
+                onChange={(e)=> {settransactionObj({...transactionObj, date : e.target.value})}}
+                value={transactionObj.date}
               />
             </div>
           </div>
@@ -112,8 +115,8 @@ export default function AddPage() {
               name="type"
               autoComplete="type-name"
               className="select block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-              onChange={handleInputChange}
-              value={added.type}
+              onChange={(e)=> {settransactionObj({...transactionObj, type : e.target.value})}}
+              value={transactionObj.type}
             >
               <option value="">Select type</option>
               <option value="Savings">Savings</option>
@@ -135,8 +138,8 @@ export default function AddPage() {
               name="description"
               rows={3}
               className="desc block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={handleInputChange}
-              value={added.description}
+              onChange={(e)=> {settransactionObj({...transactionObj, description : e.target.value})}}
+              value={transactionObj.description}
             />
           </div>
         </div>

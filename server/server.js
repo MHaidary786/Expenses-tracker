@@ -20,6 +20,9 @@ app.post("/adduser", Controller.users);
 
 app.post("/addtransaction", Controller.addTransaction);
 
+app.delete("/delete/:_id", Controller.deleteTransaction);
+
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

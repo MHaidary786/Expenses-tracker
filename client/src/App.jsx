@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import "./App.css";
-import AddPage from "./components/addPage";
+import AddPage from "./components/addPage"
 import SignUpPage from "./components/SignUpPage";
 import Dashboard from "./components/Dashboard";
-import axios from "axios";
-
-const URL = "http://localhost:4000";
 
 function App() {
-  const [data, setData] = useState([]);
-
-  const alltransactions = () => {
-    axios.get("http://localhost:4000/alltransactions").then((res) => {
-      try {
-        console.log(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
-
   return (
     <div className="App">
-      <h1>{data}</h1>
-      <Dashboard />
+      
+      <Router>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/add" element={<AddPage/>} />
+          <Route path="/signup" element={<SignUpPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

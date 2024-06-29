@@ -80,6 +80,17 @@ const allTransactions = async (req, res) => {
   }
 };
 
+const deleteTransaction = async (req, res) => {
+    try {
+        const transactionID = req.params._id
+        await Transaction.deleteOne({ _id : transactionID })
+        res.send(transactionID)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 module.exports = {
   home,
   users,
@@ -87,4 +98,5 @@ module.exports = {
   addTransaction,
   usernames,
   allTransactions,
+  deleteTransaction,
 };

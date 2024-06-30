@@ -1,29 +1,58 @@
 // home, login, singUp, addTransaction
 const User = require("../models/UserModel");
 const Transaction = require("../models/AddModel");
+const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose")
+
+const blogModel = mongoose.model("blog", { title : String, text : String})
 
 const home = (req, res) => {
   res.send("WELCOME");
 };
 
-const users = async (req, res) => {
+const singup = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    console.log(req.body);
-
-    const userData = {
-      username,
-      password,
-    };
-
-    const newUser = await User.create(userData);
-    console.log("Saved user:", newUser);
-
-    res.status(201).json(newUser);
+    const user = await User.findOne({username : req.body.username});
+    
+    if (user) { 
+        res.send("Username Already Exist, please choose a different username")
+    } 
+    else {
+        bcrypt.hash(req.body.password, 10, async function(err, hash) {
+            // Store hash in your password DB.
+            const newUser = { name : req.body.name , lastname : req.body.lastname , username : req.body.username, password : hash }
+            await User.create(newUser)
+            res.status(201).json(newUser);
+        });
+    }
+    
   } catch (error) {
     console.log(error);
   }
 };
+
+const login = async (req, res) => {
+    const user = await User.findOne({username : req.body.username});
+    if (user) {
+        bcrypt.compare(req.body.password, user.password, (err, result) => {
+            if(result){
+                const token = jwt.sign({_id : user._id} , "mahdi secret")
+                res.send({token : token})
+            } else {
+                res.status(401).send({msg : "Wrong Password"})
+            }
+        })
+    } else {
+        res.status(401).send({msg : "Wrong Username"})
+    }
+}
+
+const deleteUser = async (req, res) => {
+    const id = req.params.id
+    await User.deleteOne({ _id : id})
+    res.send({msg : "Delete done"})
+}
 
 const usernames = async (req, res) => {
   try {
@@ -33,8 +62,6 @@ const usernames = async (req, res) => {
     console.log(error);
   }
 };
-
-const singUp = (req, res) => {};
 
 const addTransaction = async (req, res) => {
   try {
@@ -91,12 +118,38 @@ const deleteTransaction = async (req, res) => {
 }
 
 
+
+
+
+const createblog = async (req, res) => {
+    try {
+        const blog = await blogModel.create(req.body)
+        res.send(blog)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const blogs = async (req, res) => {
+    try {
+        const blogs = await blogModel.find()
+        res.send(blogs)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 module.exports = {
   home,
-  users,
-  singUp,
+  singup,
+  login,
   addTransaction,
   usernames,
+  deleteUser,
   allTransactions,
   deleteTransaction,
+  createblog,
+  blogs,
 };

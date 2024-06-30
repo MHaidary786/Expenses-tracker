@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import classes from "./dashboard.module.css";
 import axios from "axios";
 
 export default function Dashboard() {
@@ -31,41 +31,42 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="Dashboardcontainer">
-      <div className="dash-texts">
-        <h1 className="logo">
-          Expenses <br /> <span>Tracker</span>
-        </h1>
-
-        <h2 className="all">All Transactions</h2>
+    <div className={classes.Dashboardcontainer}>
+      <div className={classes.header}>
+          <p className={classes.text}>
+            Mahdi! You have 100$ left in your account.
+          </p>
       </div>
+      <div className="transactions">
       <TransactionsList transactions={transactions} deleteTransaction={deleteTransaction} />
+      </div>
     </div>
   );
 }
 
 function TransactionsList({ transactions, deleteTransaction }) {
   return (
-    <div className="transactioncontainer">
-      <div className="card-container">
+    <div>
+      <div className={classes.transactionContainer}>
+      <h2 className={classes.headline}>All Transactions</h2>
+      <div className={classes.cardContainer}>
         {transactions.map((transaction, index) => (
-          <div key={index} className="card">
-            <div className="card-top">
+          <div key={index} className={classes.card}>
+            <div className={classes.cardTop}>
               <div>
-                <span>
-                  <h1>{transaction.reason}</h1>
-                  <button onClick={() => deleteTransaction(transaction._id)}>Delete</button>
-                </span>
+                <h1>{transaction.reason}</h1>
+                <button onClick={() => deleteTransaction(transaction._id)}>Delete</button>
               </div>
-              <h3>{transaction.date}</h3>
+              <h3>{transaction.date.split('T')[0]}</h3>
             </div>
-            <div className="card-bottom">
+            <div className={classes.cardBottom}>
               <span>{transaction.type}</span>
               <h2>{transaction.amount}</h2>
             </div>
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

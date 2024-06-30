@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Navbar from "../navbar/navbar";
+
 
 export default function AddPage() {
   const [transactionObj, settransactionObj] = useState({
@@ -13,14 +15,6 @@ export default function AddPage() {
 
   console.log(`Here is the added transactions : ${transactionObj}`)
 
-
-  // function handleInputChange(e) {
-  //   const { name, value } = e.target;
-  //   setAdded((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // }
 
   const addnewTransaction = async (e) => {
     e.preventDefault();

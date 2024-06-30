@@ -37,8 +37,8 @@ const login = async (req, res) => {
     if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
             if(result){
-                const token = jwt.sign({_id : user._id} , "mahdi secret")
-                res.send({token : token})
+                const token = jwt.sign({_id : user._id} , "secret", {expiresIn : "3h"})
+                res.status(200).json({token : token})
             } else {
                 res.status(401).send({msg : "Wrong Password"})
             }

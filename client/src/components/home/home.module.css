@@ -1,0 +1,30 @@
+
+.welcome{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .welcome *{
+    font-size: 1.5rem;
+  }
+  
+  
+  .loginRoute{
+    outline: none;
+    border: 1px solid transparent;
+    padding: 0.5rem 1.5rem;
+    background-color: #3eb140;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .loginRoute:hover{
+    border-color: #ff6347;
+    color: #ff6347;
+    background-color: #fff;
+  }

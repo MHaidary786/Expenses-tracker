@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../navbar/navbar";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function AddPage() {
@@ -11,6 +13,8 @@ export default function AddPage() {
     type: "",
     description: "",
   });
+
+  const navigate = useNavigate()
 
 
   console.log(`Here is the added transactions : ${transactionObj}`)
@@ -29,6 +33,7 @@ export default function AddPage() {
     } catch (error) {
       console.error(error);
     }
+    navigate("/dashboard")
   };
 
   return (

@@ -1,7 +1,7 @@
 // home, login, singUp, addTransaction
 const User = require("../models/UserModel");
 const Transaction = require("../models/AddModel");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose")
 const dotenv = require('dotenv').config()

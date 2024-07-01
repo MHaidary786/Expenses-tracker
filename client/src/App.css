@@ -8,6 +8,10 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+.App{
+  scrollbar-width: none;
+}
+
 
 .welcome{
   margin-top: 50px;

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navbar from "../navbar/navbar";
 import { useNavigate } from "react-router-dom";
+import classes from "./addTransaction.module.css"
+
 
 
 
@@ -37,42 +38,31 @@ export default function AddPage() {
   };
 
   return (
-    <div>
-      <h1 className="title-1">Expenses Tracker</h1>
-      <h2 className="title-2">Add Transaction</h2>
+    <div className={classes.addFormContainer}>
+      <div className={classes.left}>
+      <div className={classes.addWrapper}>
+      <h2 className="title-2 font-bold pb-4 text-xl">Add Transaction</h2>
       <form onSubmit={addnewTransaction}>
         <div className="sm:col-span-3">
-          <label
-            htmlFor="reason"
-            className="block text-6x font-medium leading-6 text-gray-900"
-          >
-            What for?
-          </label>
+          
           <div className="mt-2">
             <input
               type="text"
-              name="reason"
-              id="reason"
               className="title block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               onChange={(e)=> {settransactionObj({...transactionObj, reason : e.target.value})}}
               value={transactionObj.reason}
+              placeholder="Sallary, Hause Rent ...etc"
             />
           </div>
         </div>
 
         <div className="row">
           <div className="sm:col-span-3">
-            <label
-              htmlFor="amount"
-              className="block text-6x font-medium leading-6 text-gray-900"
-            >
-              Amount
-            </label>
+            
             <div className="mt-2">
               <input
-                type="number"
-                name="amount"
-                id="amount"
+              placeholder="Amount"
+                type="text"
                 className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e)=> {settransactionObj({...transactionObj, amount : e.target.value})}}
                 value={transactionObj.amount}
@@ -81,17 +71,10 @@ export default function AddPage() {
           </div>
 
           <div className="sm:col-span-3">
-            <label
-              htmlFor="date"
-              className="block text-6x font-medium leading-6 text-gray-900"
-            >
-              Date
-            </label>
+            
             <div className="mt-2">
               <input
                 type="date"
-                name="date"
-                id="date"
                 autoComplete="given-name"
                 className="title block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e)=> {settransactionObj({...transactionObj, date : e.target.value})}}
@@ -102,39 +85,23 @@ export default function AddPage() {
         </div>
 
         <div className="sm:col-span-3">
-          <label
-            htmlFor="type"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Type
-          </label>
           <div className="mt-2">
             <select
-              id="type"
-              name="type"
               autoComplete="type-name"
-              className="select block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+              className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               onChange={(e)=> {settransactionObj({...transactionObj, type : e.target.value})}}
               value={transactionObj.type}
             >
-              <option value="">Select type</option>
-              <option value="Savings">Savings</option>
+              <option value="Savings" defaultValue>Savings</option>
               <option value="Expenses">Expenses</option>
             </select>
           </div>
         </div>
 
         <div className="col-span-full">
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Descriptions (optional)
-          </label>
           <div className="mt-2">
             <textarea
-              id="description"
-              name="description"
+            placeholder="Descriptions (optional)"
               rows={3}
               className="desc block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               onChange={(e)=> {settransactionObj({...transactionObj, description : e.target.value})}}
@@ -142,11 +109,18 @@ export default function AddPage() {
             />
           </div>
         </div>
-
+<br />
         <button type="submit" className="btn btn-primary">
           Save
         </button>
       </form>
+      </div>
+      </div>
+      <div className={classes.right}></div>
+      {/* <form className="form max-w-sm mx-auto w-96">
+      <h1 className="font-bold pb-4 text-xl">Transactions</h1>
+
+      </form> */}
     </div>
   );
 }

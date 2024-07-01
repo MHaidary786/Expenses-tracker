@@ -4,6 +4,7 @@
   /* background-color: #e7dfdf; */
   display: flex;
   flex-direction: column;
+  scrollbar-width: none;
 }
 
 .header {

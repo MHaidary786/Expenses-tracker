@@ -33,6 +33,7 @@ body, html {
     display: flex;
     align-items: center;
   }
+  .right .dashboardIcon,
   .right .add,
   .right .homeIcon,
   .right .logoutIcon {
@@ -42,6 +43,7 @@ body, html {
     cursor: pointer;
     transition: color 0.3s ease;
   }
+  .right .dashboardIcon:hover,
   .right .add:hover,
   .right .homeIcon:hover,
   .right .logoutIcon:hover {

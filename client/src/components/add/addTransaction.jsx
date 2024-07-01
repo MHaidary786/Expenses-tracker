@@ -17,10 +17,6 @@ export default function AddPage() {
 
   const navigate = useNavigate()
 
-
-  console.log(`Here is the added transactions : ${transactionObj}`)
-
-
   const addnewTransaction = async (e) => {
     e.preventDefault();
     let newTransaction = transactionObj;
@@ -51,7 +47,7 @@ export default function AddPage() {
               className="title block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               onChange={(e)=> {settransactionObj({...transactionObj, reason : e.target.value})}}
               value={transactionObj.reason}
-              placeholder="Sallary, Hause Rent ...etc"
+              placeholder="Salary, House Rent ...etc"
             />
           </div>
         </div>
@@ -62,7 +58,7 @@ export default function AddPage() {
             <div className="mt-2">
               <input
               placeholder="Amount"
-                type="text"
+                type="number"
                 className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e)=> {settransactionObj({...transactionObj, amount : e.target.value})}}
                 value={transactionObj.amount}
@@ -86,15 +82,18 @@ export default function AddPage() {
 
         <div className="sm:col-span-3">
           <div className="mt-2">
-            <select
-              autoComplete="type-name"
-              className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={(e)=> {settransactionObj({...transactionObj, type : e.target.value})}}
-              value={transactionObj.type}
-            >
-              <option value="Savings" defaultValue>Savings</option>
-              <option value="Expenses">Expenses</option>
-            </select>
+          <select
+                  autoComplete="type-name"
+                  className="amount block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    settransactionObj({ ...transactionObj, type: e.target.value });
+                  }}
+                  value={transactionObj.type}
+                >
+                  <option value="">Select Type</option>
+                  <option value="Savings">Savings</option>
+                  <option value="Expenses">Expenses</option>
+                </select>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dotenv = require('dotenv').config()
 
 main()
   .then(() => console.log("DB connected successfully"))
@@ -6,7 +7,7 @@ main()
 
 async function main() {
   // replace "mongodb://127.0.0.1:27017/test" with your mongodb atlas URI
-  await mongoose.connect("mongodb+srv://john2018bates:John2018bates@cluster0.lcotvee.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 module.exports = main;

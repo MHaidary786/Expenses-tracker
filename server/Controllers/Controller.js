@@ -4,8 +4,8 @@ const Transaction = require("../models/AddModel");
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose")
+const dotenv = require('dotenv').config()
 
-const blogModel = mongoose.model("blog", { title : String, text : String})
 
 const home = (req, res) => {
   res.send("WELCOME");
@@ -37,7 +37,7 @@ const login = async (req, res) => {
     if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
             if(result){
-                const token = jwt.sign({_id : user._id} , "secret", {expiresIn : "3h"})
+                const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET, {expiresIn : "3h"})
                 res.status(200).json({token : token})
             } else {
                 res.status(401).send({msg : "Wrong Password"})
@@ -117,30 +117,6 @@ const deleteTransaction = async (req, res) => {
     }
 }
 
-
-
-
-
-const createblog = async (req, res) => {
-    try {
-        const blog = await blogModel.create(req.body)
-        res.send(blog)
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const blogs = async (req, res) => {
-    try {
-        const blogs = await blogModel.find()
-        res.send(blogs)
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-
 module.exports = {
   home,
   singup,
@@ -150,6 +126,4 @@ module.exports = {
   deleteUser,
   allTransactions,
   deleteTransaction,
-  createblog,
-  blogs,
 };

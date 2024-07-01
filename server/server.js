@@ -2,9 +2,6 @@ const Controller = require("./Controllers/Controller");
 const express = require("express");
 const cors = require("cors");
 const db = require("./config/connection");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const VerifyToken = require("./middlewares/verifyToken")
 
 const app = express();
 const port = 4000;
@@ -34,9 +31,6 @@ app.post("/addtransaction",  Controller.addTransaction);
 
 app.delete("/delete/:_id",  Controller.deleteTransaction);
 
-
-app.post("/create", Controller.createblog);
-app.get("/blogs", Controller.blogs);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

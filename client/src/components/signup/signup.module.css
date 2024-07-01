@@ -1,5 +1,4 @@
-
-.signUpContainer{
+.signUpContainer {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -13,35 +12,34 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-/* 6 9s */
-
-.signUpWrapper{
+.signUpWrapper {
     border-radius: 20px;
     width: 45vw;
     height: 70vh;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+                rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+                rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+                rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+                rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-/* left */
-.signUpLeftSide{
+
+.signUpLeftSide {
     flex: 1;
     width: 50%;
     height: 100%;
 }
 
-.leftImg{
+.leftImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
 }
 
-/* right */
-
-.signUpRightSide{
+.signUpRightSide {
     margin: 0;
     flex: 1;
     background-color: #fff;
@@ -50,21 +48,21 @@
     overflow: hidden;
 }
 
-.signUpRightSide > h2{
+.signUpRightSide > h2 {
     text-align: center;
     font-size: 36px;
     color: #f22a2a;
     margin: 2.5rem 0;
 }
 
-.signUpRightSide > .signUpForm{
+.signUpRightSide > .signUpForm {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
-.signUpForm{
+.signUpForm {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -72,7 +70,7 @@
     gap: 32px;
 }
 
-.signUpForm > input{
+.signUpForm > input {
     outline: none;
     border: none;
     border-bottom: 1px solid #333;
@@ -82,11 +80,11 @@
     transition: 150ms all ease-in-out;
 }
 
-.signUpForm >input:focus{
+.signUpForm > input:focus {
     padding-left: 0.75rem;
 }
 
-.signUpForm>.submitBtn{
+.signUpForm > .submitBtn {
     margin-top: 2.5rem;
     outline: none;
     border: 1px solid transparent;
@@ -99,28 +97,29 @@
     cursor: pointer;
 }
 
-.signUpForm > .submitBtn:hover{
+.signUpForm > .submitBtn:hover {
     border-color: #f22a2a;
     color: #f22a2a;
     background-color: #fff;
 }
 
-.signUpForm>p{
+.signUpForm > p {
     text-align: center;
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
-.signUpForm > p > a{
+.signUpForm > p > a {
     text-decoration: none;
     font-size: 17px;
     color: #888;
     margin-top: 0.25rem;
 }
 
-.errorMessage{
+.errorMessage {
     height: 70px;
     width: 250px;
     text-align: center;
@@ -133,4 +132,25 @@
     top: 5rem;
     right: 5rem;
     font-weight: 500;
+}
+
+/* Responsive for phone */
+@media only screen and (max-width: 600px) {
+    .signUpWrapper {
+        width: 90vw;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .signUpLeftSide,
+    .signUpRightSide {
+        width: 100%;
+        height: auto ;
+    }
+
+    .signUpForm > input {
+        width: 80%;
+    }
+
+    
 }

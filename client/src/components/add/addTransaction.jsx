@@ -23,7 +23,7 @@ export default function AddPage() {
 
     try {
       let response = await axios.post(
-        "http://localhost:4000/addtransaction",
+        "https://expenses-tracker-mps2.onrender.com/addtransaction",
         newTransaction
       );
       console.log(response);

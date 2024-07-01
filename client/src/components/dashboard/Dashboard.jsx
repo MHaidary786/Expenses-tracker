@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/alltransactions")
+      .get("https://expenses-tracker-mps2.onrender.com/alltransactions")
       .then((res) => {
         setTransactions(res.data);
       })
@@ -18,7 +18,7 @@ export default function Dashboard() {
 
   const deleteTransaction = (id) => {
     axios
-      .delete("http://localhost:4000/delete/" + id)
+      .delete("https://expenses-tracker-mps2.onrender.com/delete/" + id)
       .then(({ data }) => {
         console.log(data);
         setTransactions((prevTransactions) =>

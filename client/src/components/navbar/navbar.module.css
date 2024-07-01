@@ -50,3 +50,21 @@ body, html {
     color: #ff6347;
   }
   
+
+  @media only screen and (max-width: 600px) {
+
+    .navcontainer {
+      width: 100%;
+      background-color: #343a40;
+      padding: 1rem 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .right .dashboardIcon,
+  .right .add,
+  .right .homeIcon,
+  .right .logoutIcon {
+    font-size: 1.3rem;
+  }
+
+  }

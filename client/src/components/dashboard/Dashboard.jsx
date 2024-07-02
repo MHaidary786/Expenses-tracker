@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("https://expenses-tracker-mps2.onrender.com/alltransactions")
+      .get("http://localhost:4000/alltransactions", {headers:{Authorization: `Bearer ${localStorage.getItem("token")}`}})
       .then((res) => {
         setTransactions(res.data);
       })
@@ -18,7 +18,7 @@ export default function Dashboard() {
 
   const deleteTransaction = (id) => {
     axios
-      .delete("https://expenses-tracker-mps2.onrender.com/delete/" + id)
+      .delete("http://localhost:4000/delete/" + id)
       .then(({ data }) => {
         console.log(data);
         setTransactions((prevTransactions) =>

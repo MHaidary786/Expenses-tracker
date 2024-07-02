@@ -17,10 +17,12 @@ const Login = () => {
       password: password
     };
 
+
     try {
-      const res = await axios.post("https://expenses-tracker-mps2.onrender.com/login", newUser, {
-        headers: { "Content-Type": 'application/json' }
-      });
+      const res = await axios.post("http://localhost:4000/login", newUser);
+      console.log(res.data)
+      localStorage.setItem("token", res.data.token)
+
 
       if (res.status === 200) {
         navigate('/dashboard');

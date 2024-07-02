@@ -21,7 +21,7 @@ const SignUp = () => {
     };
 
     try {
-      await axios.post('https://expenses-tracker-mps2.onrender.com/signup', newUser, {
+      await axios.post('http://localhost:4000/signup', newUser, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -37,7 +37,7 @@ const login = async (req, res) => {
     if (user) {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
             if(result){
-                const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET, {expiresIn : "3h"})
+                const token = jwt.sign({userID : user._id} , process.env.JWT_SECRET, {expiresIn : "3h"})
                 res.status(200).json({token : token})
             } else {
                 res.status(401).send({msg : "Wrong Password"})
@@ -65,10 +65,10 @@ const usernames = async (req, res) => {
 
 const addTransaction = async (req, res) => {
   try {
+
     console.log("Request body:", req.body);
-
     const { reason, amount, date, type, description } = req.body;
-
+    const {userID} = req.user
     console.log("Parsed data:", { reason, amount, date, type, description });
 
     if (!reason || !amount || !date || !type || !description) {
@@ -82,6 +82,7 @@ const addTransaction = async (req, res) => {
       date,
       type,
       description,
+      userID,
     };
 
     console.log("Transaction data to save:", transactionData);
@@ -89,7 +90,7 @@ const addTransaction = async (req, res) => {
     const newTransaction = await Transaction.create(transactionData);
     console.log("Saved transaction:", newTransaction);
 
-    res.status(201).json(newTransaction);
+    res.status(201).send(newTransaction);
   } catch (error) {
     console.error("Error saving transaction:", error);
     res
@@ -100,7 +101,10 @@ const addTransaction = async (req, res) => {
 
 const allTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find();
+    const user = await User.findById(req.user.userID)
+    console.log("yasmeen" + user)
+    const transactions = await Transaction.find({userID: req.user.userID});
+    console.log(transactions)
     res.status(200).send(transactions);
   } catch (error) {
     console.log(error);

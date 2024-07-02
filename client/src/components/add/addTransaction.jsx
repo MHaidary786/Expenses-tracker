@@ -22,9 +22,10 @@ export default function AddPage() {
     let newTransaction = transactionObj;
 
     try {
+      console.log(localStorage.getItem("token"))
       let response = await axios.post(
-        "https://expenses-tracker-mps2.onrender.com/addtransaction",
-        newTransaction
+        "http://localhost:4000/addtransaction",
+        newTransaction,  {headers:{Authorization: `Bearer ${localStorage.getItem("token")}`}}
       );
       console.log(response);
     } catch (error) {

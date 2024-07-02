@@ -5,6 +5,12 @@ import classes from "./navbar.module.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
+  const logout = ()=>{
+    localStorage.removeItem("token")
+    navigate("/")
+  }
+
   return (
     <div className={classes.navcontainer}>
       <div className={classes.wrapper}>
@@ -20,7 +26,10 @@ export default function Navbar() {
       </a>
         <AiOutlineDashboard className={classes.dashboardIcon} onClick={() => navigate("/dashboard")} alt="Dashboard" />
           <AiOutlineHome className={classes.homeIcon} onClick={() => navigate('/')} />
-          <AiOutlineLogout className={classes.logoutIcon} onClick={() => navigate('/')} />
+          <AiOutlineLogout className={classes.logoutIcon} onClick={() => {
+            navigate('/')
+            logout()
+          }} />
         </div>
       </div>
     </div>

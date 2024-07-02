@@ -2,6 +2,7 @@ const Controller = require("./Controllers/Controller");
 const express = require("express");
 const cors = require("cors");
 const db = require("./config/connection");
+const verifyJwt = require("./middlewares/verifyToken")
 
 const app = express();
 const port = 4000;
@@ -19,7 +20,7 @@ app.get("/", Controller.home);
 
 app.get("/users", Controller.usernames);
 
-app.get("/alltransactions",  Controller.allTransactions);
+app.get("/alltransactions",verifyJwt,  Controller.allTransactions);
 
 app.post("/signup", Controller.singup);
 
@@ -27,7 +28,7 @@ app.post("/login", Controller.login);
 
 app.delete("/deleteuser/:id", Controller.deleteUser);
 
-app.post("/addtransaction",  Controller.addTransaction);
+app.post("/addtransaction",verifyJwt,  Controller.addTransaction);
 
 app.delete("/delete/:_id",  Controller.deleteTransaction);
 
